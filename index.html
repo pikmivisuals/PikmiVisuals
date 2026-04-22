@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PikmiVisuals | Dark Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --bg-color: #0b0e14;
@@ -30,7 +31,30 @@
             min-height: 100vh;
         }
 
-        /* Анимированный фон */
+        /* TOAST */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(20, 20, 30, 0.9);
+            border: 1px solid var(--glass-border);
+            padding: 15px 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: 0.4s ease;
+            z-index: 9999;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* background */
         .glow-bg {
             position: fixed;
             top: 0;
@@ -55,7 +79,6 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle, var(--accent-lavender) 0%, transparent 70%);
-            animation-delay: -5s;
         }
 
         @keyframes move {
@@ -63,7 +86,6 @@
             to { transform: translate(20%, 20%); }
         }
 
-        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -80,23 +102,11 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
-            letter-spacing: 1px;
             background: linear-gradient(to right, #fff, var(--accent-lavender));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        nav a {
-            color: var(--text-dim);
-            text-decoration: none;
-            margin-right: 25px;
-            transition: 0.3s;
-            font-size: 0.9rem;
-        }
-
-        nav a:hover { color: #fff; }
-
-        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -118,11 +128,9 @@
         .hero p {
             color: var(--text-dim);
             font-size: 1.2rem;
-            max-width: 600px;
             margin-bottom: 40px;
         }
 
-        /* Кнопка скачать */
         .download-main {
             padding: 18px 45px;
             font-size: 1.1rem;
@@ -132,9 +140,8 @@
             color: #fff;
             backdrop-filter: blur(10px);
             cursor: pointer;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.3s;
             display: flex;
-            align-items: center;
             gap: 10px;
             text-decoration: none;
         }
@@ -145,114 +152,46 @@
             transform: scale(1.05);
         }
 
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            padding: 100px 10% 150px 10%;
-        }
-
-        .feature-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            transition: 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--accent-purple);
-            transform: translateY(-10px);
-        }
-
-        .feature-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
-        .feature-card p { color: var(--text-dim); line-height: 1.6; }
-
-        @media (max-width: 968px) {
-            .features { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.5rem; }
-        }
     </style>
 </head>
+
 <body>
 
-    <div class="glow-bg">
-        <div class="blob"></div>
-        <div class="blob blob-2"></div>
-    </div>
+<!-- TOAST -->
+<div class="toast" id="toast">Загрузка началась...</div>
 
-    <header>
-        <div class="logo">PikmiVisuals</div>
-        <nav>
-            <a href="#">Главная</a>
-            <a href="#">Преимущества</a>
-            <a href="#">Поддержка</a>
-        </nav>
-    </header>
+<div class="glow-bg">
+    <div class="blob"></div>
+    <div class="blob blob-2"></div>
+</div>
 
-    <section class="hero">
-        <h1>Добро пожаловать в PikmiVisuals</h1>
-        <p> Не будь  нубом! Качай PikmiVisuals</p>
-        
-        <a href="#" class="download-main" id="downloadBtn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Скачать сейчас
-        </a>
-    </section>
+<header>
+    <div class="logo">PikmiVisuals</div>
+</header>
 
-    <section class="features">
-        <div class="feature-card">
-            <h3>Производительность</h3>
-            <p>Оптимизированный код, который не нагружает вашу систему даже в самых тяжелых сценах.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Интерфейс</h3>
-            <p>Интуитивно понятный UI с возможностью полной кастомизации под ваши нужды.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Поддержка 24/7</h3>
-            <p>Наша команда всегда на связи, чтобы помочь вам с настройкой или вопросами.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Защита</h3>
-            <p>Продвинутые алгоритмы обхода и защиты ваших данных — безопасность превыше всего.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Обновления</h3>
-            <p>Регулярные патчи и добавление нового функционала на основе отзывов сообщества.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Инструментарий</h3>
-            <p>Широкий выбор визуальных надстроек и гибких фильтров для любого стиля игры.</p>
-        </div>
-    </section>
+<section class="hero">
+    <h1>PikmiVisuals</h1>
+    <p>Не будь нубом! Качай сейчас</p>
 
-    <script>
-        // Обработка кнопки скачать
-        document.getElementById('downloadBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Ошибка: PikmiVisuals в данный момент находится в разработке.');
-        });
+    <a href="https://workupload.com/start/XQ3xkt3PrsK"
+       class="download-main"
+       target="_blank"
+       id="downloadBtn">
+        Скачать
+    </a>
+</section>
 
-        // Анимация появления при скролле
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, observerOptions);
+<script>
+    const toast = document.getElementById("toast");
 
-        document.querySelectorAll('.feature-card').forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(30px)";
-            el.style.transition = "all 0.8s ease-out";
-            observer.observe(el);
-        });
-    </script>
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
+    });
+</script>
+
 </body>
 </html>
