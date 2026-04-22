@@ -1,196 +1,314 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PikmiVisuals | Dark Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PikmiVisuals | Visual Client</title>
 
-    <style>
-        :root {
-            --bg-color: #0b0e14;
-            --accent-purple: #7000ff;
-            --accent-lavender: #b085ff;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+<style>
+:root{
+    --bg:#0b0e14;
+    --accent:#7000ff;
+    --accent2:#b085ff;
+    --text:#fff;
+    --dim:#a0a0a0;
+    --border:rgba(255,255,255,0.1);
+}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter;
+    scroll-behavior:smooth;
+}
 
-        /* TOAST */
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(20, 20, 30, 0.9);
-            border: 1px solid var(--glass-border);
-            padding: 15px 20px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            color: #fff;
-            font-size: 0.9rem;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: 0.4s ease;
-            z-index: 9999;
-        }
+body{
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
 
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* BACKGROUND */
+.bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
 
-        /* background */
-        .glow-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+.blob{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,var(--accent),transparent 70%);
+    filter:blur(80px);
+    opacity:0.15;
+    animation:move 20s infinite alternate;
+}
 
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
-            filter: blur(80px);
-            opacity: 0.15;
-            animation: move 20s infinite alternate;
-        }
+.blob2{
+    right:0;
+    bottom:0;
+    background:radial-gradient(circle,var(--accent2),transparent 70%);
+}
 
-        .blob-2 {
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle, var(--accent-lavender) 0%, transparent 70%);
-        }
+@keyframes move{
+    from{transform:translate(-10%,-10%)}
+    to{transform:translate(20%,20%)}
+}
 
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
-        }
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 10%;
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    z-index:100;
+}
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 10%;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--glass-border);
-        }
+.logo{
+    font-weight:800;
+    background:linear-gradient(to right,#fff,var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, var(--accent-lavender));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+nav a{
+    color:var(--dim);
+    margin-left:20px;
+    text-decoration:none;
+    transition:0.3s;
+}
+nav a:hover{color:#fff}
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
 
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff 50%, #666);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.hero h1{
+    font-size:4rem;
+    background:linear-gradient(#fff,#777);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-        .hero p {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-        }
+.hero p{
+    color:var(--dim);
+    margin:20px 0 40px;
+    max-width:600px;
+}
 
-        .download-main {
-            padding: 18px 45px;
-            font-size: 1.1rem;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            color: #fff;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            gap: 10px;
-            text-decoration: none;
-        }
+/* BUTTON */
+.btn{
+    padding:18px 45px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+    text-decoration:none;
+    transition:0.3s;
+    display:inline-flex;
+    gap:10px;
+}
+.btn:hover{
+    background:#fff;
+    color:#000;
+    transform:scale(1.05);
+}
 
-        .download-main:hover {
-            background: #fff;
-            color: #000;
-            transform: scale(1.05);
-        }
+/* SECTIONS */
+section{
+    padding:120px 10%;
+}
 
-    </style>
+/* ABOUT */
+.about h2,
+.features h2,
+.team h2{
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+.about p{
+    color:var(--dim);
+    max-width:700px;
+    line-height:1.6;
+}
+
+/* FEATURES */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    padding:30px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    background:rgba(255,255,255,0.03);
+    transition:0.3s;
+}
+
+.card:hover{
+    border-color:var(--accent);
+    transform:translateY(-10px);
+}
+
+.card p{color:var(--dim);margin-top:10px}
+
+/* TEAM */
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.member{
+    padding:30px;
+    border-radius:15px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.03);
+    text-align:center;
+    transition:0.3s;
+}
+
+.member:hover{
+    transform:translateY(-10px);
+    border-color:var(--accent);
+}
+
+.member span{
+    color:var(--dim);
+    font-size:0.9rem;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    top:20px;
+    right:20px;
+    padding:15px 20px;
+    border-radius:12px;
+    background:rgba(20,20,30,0.9);
+    border:1px solid var(--border);
+    opacity:0;
+    transform:translateY(-20px);
+    transition:0.4s;
+    z-index:999;
+}
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .grid,.team-grid{grid-template-columns:1fr}
+    .hero h1{font-size:2.5rem}
+}
+</style>
 </head>
 
 <body>
 
-<!-- TOAST -->
-<div class="toast" id="toast">Загрузка началась...</div>
-
-<div class="glow-bg">
+<div class="bg">
     <div class="blob"></div>
-    <div class="blob blob-2"></div>
+    <div class="blob blob2"></div>
 </div>
 
 <header>
-    <div class="logo">PikmiVisuals</div>
+<div class="logo">PikmiVisuals</div>
+<nav>
+<a href="#home">Главная</a>
+<a href="#about">О нас</a>
+<a href="#features">Фичи</a>
+<a href="#team">Команда</a>
+</nav>
 </header>
 
-<section class="hero">
-    <h1>PikmiVisuals</h1>
-    <p>Не будь нубом! Качай сейчас</p>
+<div class="toast" id="toast">Загрузка началась...</div>
 
-    <a href="https://workupload.com/start/XQ3xkt3PrsK"
-       class="download-main"
-       target="_blank"
-       id="downloadBtn">
-        Скачать
-    </a>
+<!-- HERO -->
+<section class="hero" id="home">
+<h1>PikmiVisuals</h1>
+<p>Современный визуальный клиент с минималистичным UI и оптимизацией.</p>
+
+<a class="btn" id="downloadBtn" target="_blank"
+href="https://workupload.com/start/XQ3xkt3PrsK">
+⬇ Скачать
+</a>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+<h2>О нас</h2>
+<p>
+PikmiVisuals — проект для улучшения визуального опыта.
+Минимализм, стиль и производительность в одном продукте.
+</p>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="features">
+<h2>Функции</h2>
+
+<div class="grid">
+<div class="card"><h3>FPS Boost</h3><p>Оптимизация производительности.</p></div>
+<div class="card"><h3>UI Custom</h3><p>Полная кастомизация интерфейса.</p></div>
+<div class="card"><h3>Lightweight</h3><p>Минимальная нагрузка на систему.</p></div>
+<div class="card"><h3>Updates</h3><p>Регулярные обновления.</p></div>
+<div class="card"><h3>Security</h3><p>Стабильность и защита.</p></div>
+<div class="card"><h3>Tools</h3><p>Дополнительные визуальные функции.</p></div>
+</div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="team">
+<h2>Команда</h2>
+
+<div class="team-grid">
+
+<div class="member">
+<h3>Owner</h3>
+<span>sadk1dd</span><br>
+<span style="font-size:0.8rem;color:#777;">guns.lol/sadk1dd</span>
+</div>
+
+<div class="member">
+<h3>Dev</h3>
+<span>sadk1dd</span>
+</div>
+
+<div class="member">
+<h3>Visual Designer</h3>
+<span>sadk1dd</span>
+</div>
+
+</div>
 </section>
 
 <script>
-    const toast = document.getElementById("toast");
+const toast=document.getElementById("toast");
 
-    document.getElementById("downloadBtn").addEventListener("click", () => {
-        toast.classList.add("show");
-
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 3000);
-    });
+document.getElementById("downloadBtn").addEventListener("click",()=>{
+    toast.classList.add("show");
+    setTimeout(()=>toast.classList.remove("show"),3000);
+});
 </script>
 
 </body>
