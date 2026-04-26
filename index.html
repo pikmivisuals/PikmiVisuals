@@ -17,6 +17,9 @@
     --text:#fff;
     --dim:#a0a0a0;
     --border:rgba(255,255,255,0.1);
+
+    --new:#ffd400;
+    --old:#777;
 }
 
 *{
@@ -31,6 +34,26 @@ body{
     background:var(--bg);
     color:var(--text);
     overflow-x:hidden;
+}
+
+/* BADGES */
+.badge-new{
+    background:var(--new);
+    color:#000;
+    font-size:12px;
+    padding:3px 8px;
+    border-radius:6px;
+    font-weight:800;
+}
+
+.badge-old{
+    background:rgba(255,255,255,0.08);
+    color:var(--old);
+    font-size:12px;
+    padding:3px 8px;
+    border-radius:6px;
+    font-weight:700;
+    margin-left:8px;
 }
 
 /* BACKGROUND */
@@ -125,6 +148,7 @@ nav a:hover{color:#fff}
     transition:0.3s;
     display:inline-flex;
     gap:10px;
+    align-items:center;
 }
 .btn:hover{
     background:#fff;
@@ -137,7 +161,6 @@ section{
     padding:120px 10%;
 }
 
-/* TITLES */
 h2{
     font-size:2.5rem;
     margin-bottom:20px;
@@ -162,15 +185,12 @@ h2{
     border:1px solid var(--border);
     border-radius:15px;
     background:rgba(255,255,255,0.03);
-    transition:0.3s;
 }
 
-.card:hover{
-    border-color:var(--accent);
-    transform:translateY(-10px);
+.card p{
+    color:var(--dim);
+    margin-top:10px;
 }
-
-.card p{color:var(--dim);margin-top:10px}
 
 /* TEAM */
 .team-grid{
@@ -201,6 +221,7 @@ h2{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    margin-bottom:15px;
 }
 
 .archive-card span{
@@ -231,7 +252,6 @@ h2{
     transform:translateY(-5px);
 }
 
-/* RESPONSIVE */
 @media(max-width:900px){
     .grid,.team-grid{grid-template-columns:1fr}
     .hero h1{font-size:2.5rem}
@@ -258,25 +278,22 @@ h2{
 </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero" id="home">
 <h1>PikmiVisuals</h1>
 <p>Business visual project — стиль, скорость и минимализм.</p>
 
-<a class="btn" href="https://workupload.com/start/Wj4gXcbAubJ" target="_blank">
-⬇ Скачать
+<a class="btn" href="https://workupload.com/start/Zvyy3mdFC3X" target="_blank">
+⬇ Скачать <span class="badge-new">NEW</span>
 </a>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="about">
 <h2>О нас</h2>
 <p>PikmiVisuals — визуальный бизнес проект с чистым UI и минимализмом.</p>
 </section>
 
-<!-- FEATURES -->
 <section id="features">
-<h2>Функции</h2>
+<h2>Фичи</h2>
 
 <div class="grid">
 <div class="card"><h3>Speed</h3><p>Быстрая работа.</p></div>
@@ -285,7 +302,6 @@ h2{
 </div>
 </section>
 
-<!-- TEAM -->
 <section id="team">
 <h2>Команда</h2>
 
@@ -310,24 +326,29 @@ h2{
 </div>
 </section>
 
-<!-- ARCHIVES -->
 <section id="archives">
 <h2>Archives</h2>
 
 <div class="archive-card">
 <div>
-<h3>Version 1.0.0 Beta</h3>
+<h3>Version 1.0.1 Beta <span class="badge-old">OLD</span></h3>
 <span>Старая версия проекта</span>
 </div>
 
-<a class="btn" href="https://workupload.com/start/XQ3xkt3PrsK" target="_blank">
-⬇ Скачать
-</a>
+<a class="btn" href="ССЫЛКА_1.0.1" target="_blank">⬇ Скачать</a>
+</div>
+
+<div class="archive-card">
+<div>
+<h3>Version 1.0.0 Beta <span class="badge-old">OLD</span></h3>
+<span>Старая версия проекта</span>
+</div>
+
+<a class="btn" href="https://workupload.com/start/XQ3xkt3PrsK" target="_blank">⬇ Скачать</a>
 </div>
 
 </section>
 
-<!-- SOCIAL -->
 <section id="social">
 <h2>Соцсети</h2>
 
